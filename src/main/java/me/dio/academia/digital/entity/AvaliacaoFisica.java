@@ -19,10 +19,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-@Data
+
 @Entity
-@NoArgsConstructor
-@AllArgsConstructor
 @Table(name = "tb_avaliacoes")
 public class AvaliacaoFisica {
 
@@ -44,4 +42,69 @@ public class AvaliacaoFisica {
   @Column(name = "altura_atual")
   private double altura;
 
+  
+  	public AvaliacaoFisica() {
+  		
+  	}
+
+
+	public AvaliacaoFisica(Long id, Aluno aluno, LocalDateTime dataDaAvaliacao, double peso, double altura) {
+		this.id = id;
+		this.aluno = aluno;
+		this.dataDaAvaliacao = dataDaAvaliacao;
+		this.peso = peso;
+		this.altura = altura;
+	}
+
+
+	public Long getId() {
+		return id;
+	}
+
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+
+	public Aluno getAluno() {
+		return aluno;
+	}
+
+
+	public void setAluno(Aluno aluno) {
+		this.aluno = aluno;
+	}
+
+
+	public LocalDateTime getDataDaAvaliacao() {
+		return dataDaAvaliacao;
+	}
+
+
+	public void setDataDaAvaliacao(LocalDateTime dataDaAvaliacao) {
+		this.dataDaAvaliacao = dataDaAvaliacao;
+	}
+
+
+	public double getPeso() {
+		return peso;
+	}
+
+
+	public void setPeso(double peso) {
+		this.peso = peso;
+	}
+
+
+	public double getAltura() {
+		return altura;
+	}
+
+
+	public void setAltura(double altura) {
+		this.altura = altura;
+	}
+  	
+  	
 }
