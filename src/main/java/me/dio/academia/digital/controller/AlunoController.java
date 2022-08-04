@@ -2,12 +2,15 @@ package me.dio.academia.digital.controller;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import me.dio.academia.digital.entity.Aluno;
@@ -26,12 +29,12 @@ public class AlunoController {
 	@GetMapping
 	public List<Aluno> mostrarTodosAlunos(){
 		
-		return service.getAll();
+		return service.getAll(null);
 	}
 	
 	
 	@PostMapping
-	public Aluno criarAluno(@RequestBody AlunoForm form) {
+	public Aluno criarAluno(@Valid @RequestBody AlunoForm form) {
 		
 		return service.create(form);
 		
@@ -42,5 +45,11 @@ public class AlunoController {
 		return service.getAllAvaliacaoFisicaId(id);
 	}
 	
+	
+	@GetMapping
+	public List<Aluno> getAll(@RequestParam(value = "birthDate", required = false) String birthDate){
+		
+		return service.getAll(birthDate);
+	}
 	
 }

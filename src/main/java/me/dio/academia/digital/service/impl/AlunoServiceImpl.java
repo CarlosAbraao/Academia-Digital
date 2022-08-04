@@ -1,14 +1,18 @@
 package me.dio.academia.digital.service.impl;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
+
 import me.dio.academia.digital.entity.Aluno;
 import me.dio.academia.digital.entity.AvaliacaoFisica;
 import me.dio.academia.digital.entity.form.AlunoForm;
 import me.dio.academia.digital.entity.form.AlunoUpdateForm;
+import me.dio.academia.digital.infra.utils.JavaTimeUtils;
 import me.dio.academia.digital.repository.AlunoRepository;
 import me.dio.academia.digital.service.IAlunoService;
 
@@ -41,12 +45,24 @@ public class AlunoServiceImpl implements IAlunoService {
 		return null;
 	}
 
+	// EXPL : SE O METODO N RECEBER O PARAM "BIRTHDATE" ELE USO O FINDALL CASO CONTRARIO O FINDBURTHDATE
 	@Override
-	public List<Aluno> getAll() {
+	public List<Aluno> getAll(String birthDate) {
 		
-		return alunoRepository.findAll();
+		
+		if(birthDate == null) {
+			return alunoRepository.findAll();
+		}else {
+			LocalDate localDate = LocalDate.parse(birthDate, JavaTimeUtils.LOCAL_DATE_FORMATTER);
+			return alunoRepository.findByBirthDate(localDate);
+		}
+		
 	}
 
+	
+	
+	
+	
 	@Override
 	public Aluno update(Long id, AlunoUpdateForm formUpdate) {
 		// TODO Auto-generated method stub
