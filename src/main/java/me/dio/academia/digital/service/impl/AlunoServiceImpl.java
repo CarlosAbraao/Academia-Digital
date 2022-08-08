@@ -47,17 +47,16 @@ public class AlunoServiceImpl implements IAlunoService {
 
 	// EXPL : SE O METODO N RECEBER O PARAM "BIRTHDATE" ELE USO O FINDALL CASO CONTRARIO O FINDBURTHDATE
 	@Override
-	public List<Aluno> getAll(String birthDate) {
+	public List<Aluno> getAll(String dataDeNascimento) {
 		
-		
-		if(birthDate == null) {
-			return alunoRepository.findAll();
-		}else {
-			LocalDate localDate = LocalDate.parse(birthDate, JavaTimeUtils.LOCAL_DATE_FORMATTER);
-			return alunoRepository.findByBirthDate(localDate);
-		}
-		
-	}
+		 if(dataDeNascimento == null) {
+		      return alunoRepository.findAll();
+		    } else {
+		      LocalDate localDate = LocalDate.parse(dataDeNascimento, JavaTimeUtils.LOCAL_DATE_FORMATTER);
+		      return alunoRepository.findByDataDeNascimento(localDate);
+		    }
+
+		  }
 
 	
 	

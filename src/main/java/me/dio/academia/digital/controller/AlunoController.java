@@ -25,12 +25,12 @@ public class AlunoController {
 	
 	@Autowired
 	private AlunoServiceImpl service;
-	
-	@GetMapping
-	public List<Aluno> mostrarTodosAlunos(){
-		
-		return service.getAll(null);
-	}
+	// ESSE METODO TEM QUE SER ANULADO PARA O FUNCIONAMENTO DO OUTRO -> "GET ALL"
+	/*
+	 * @GetMapping public List<Aluno> mostrarTodosAlunos(){
+	 * 
+	 * return service.getAll(null); }
+	 */
 	
 	
 	@PostMapping
@@ -47,9 +47,9 @@ public class AlunoController {
 	
 	
 	@GetMapping
-	public List<Aluno> getAll(@RequestParam(value = "birthDate", required = false) String birthDate){
+	public List<Aluno> getAll(@RequestParam(value = "dataDeNascimento", required = false) String dataDeNascimento){
 		
-		return service.getAll(birthDate);
+		return service.getAll(dataDeNascimento);
 	}
 	
 }
