@@ -5,6 +5,8 @@ import me.dio.academia.digital.entity.form.MatriculaForm;
 
 import java.util.List;
 
+import org.springframework.data.jpa.repository.Query;
+
 public interface IMatriculaService {
   /**
    * Cria uma Matrícula e salva no banco de dados.
@@ -24,6 +26,9 @@ public interface IMatriculaService {
    * Retorna todas as Matrículas que estão no banco de dados.
    * @return - uma lista com todas as Matrículas que estão salvas no DB.
    */
+  
+  // OUTRA FORMA DE EXECUTAR O METODO ABAIXO PARA UMA CONSULTA
+ // @Query("FROM Matricula m WHERE m.aluno.bairro = :bairro ")
   List<Matricula> getAll(String bairro);
 
   /**
